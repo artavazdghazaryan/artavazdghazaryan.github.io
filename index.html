@@ -1,270 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artavazd Ghazaryan — Web & AI Studio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Artavazd Ghazaryan — Web & AI Studio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS for scroll reveals (keeps your existing animations but more stable) -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- MAIN STYLES: change ?v when caching becomes an issue -->
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
-
-<script>
-(function() {
-  const phrases = [
-    "Web Experiences",
-    "AI-Driven Tools",
-    "Interactive Visual Systems",
-    "High-Conversion Websites"
-  ];
-
-  // Safe DOM ready
-  function ready(fn) {
-    if (document.readyState !== 'loading') fn();
-    else document.addEventListener('DOMContentLoaded', fn);
-  }
-
-  ready(() => {
-    const typedEl = document.getElementById('typed');
-    const parent = typedEl ? typedEl.parentElement : null;
-    if (!typedEl || !parent) return; // no-op if element missing
-
-    // Helper to measure longest phrase and reserve width
-    const measureLongest = (phrases, font) => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      ctx.font = font || getComputedStyle(typedEl).font || '16px sans-serif';
-      let max = 0;
-      for (let p of phrases) {
-        const w = ctx.measureText(p).width;
-        if (w > max) max = w;
-      }
-      return Math.ceil(max);
-    };
-
-    // Set min-width on parent to avoid reflow when strings change
-    const fontSpec = `${getComputedStyle(typedEl).fontWeight} ${getComputedStyle(typedEl).fontSize} ${getComputedStyle(typedEl).fontFamily}`;
-    const longestW = measureLongest(phrases, fontSpec);
-    // Add a little padding so it doesn't feel tight
-    parent.style.minWidth = (longestW + 28) + 'px';
-
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let typingTimer = null;
-
-    function typeChar() {
-      const current = phrases[phraseIndex];
-      if (charIndex < current.length) {
-        typedEl.textContent += current.charAt(charIndex);
-        charIndex++;
-        typingTimer = setTimeout(typeChar, 60);
-      } else {
-        typingTimer = setTimeout(eraseChar, 1100);
-      }
-    }
-
-    function eraseChar() {
-      if (charIndex > 0) {
-        typedEl.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
-        charIndex--;
-        typingTimer = setTimeout(eraseChar, 40);
-      } else {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typingTimer = setTimeout(typeChar, 220);
-      }
-    }
-
-    // Start
-    typeChar();
-
-    // Clean up on page unload
-    window.addEventListener('beforeunload', () => { if (typingTimer) clearTimeout(typingTimer); });
-  });
-})();
-</script>
-    
 <body>
 
-<!-- NAVBAR -->
-<header class="navbar">
+  <!-- NAV -->
+  <header class="navbar" role="banner">
     <div class="container nav-flex">
-        <div class="logo">AG</div>
-        <nav>
-            <a href="#work">Work</a>
-            <a href="#testimonials">Testimonials</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button id="theme-toggle" class="theme-toggle">🌙</button>
+      <div class="logo" aria-hidden="true">AG</div>
+
+      <!-- Desktop nav -->
+      <nav class="nav-links" role="navigation" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- mobile menu toggle -->
+      <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
     </div>
-</header>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="animated-grid"></div>
+    <!-- mobile menu (hidden by default) -->
+    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
 
-    <div class="hero-content container">
-        <h1 class="name">Artavazd Ghazaryan</h1>
+  <!-- HERO -->
+  <main>
+    <section class="hero" aria-label="Intro">
+      <div class="animated-grid" aria-hidden="true"></div>
 
-        <h2 class="typed-subtitle">
-            <span id="typed"></span>
+      <div class="hero-content container">
+        <h1 class="name" data-aos="fade-down">Artavazd Ghazaryan</h1>
+
+        <h2 class="typed-subtitle" data-aos="fade-up" aria-live="polite">
+          <span id="typed" aria-hidden="true"></span>
         </h2>
 
-        <div class="hero-buttons">
-            <a href="#work" class="btn">View Our Work</a>
-            <a href="#contact" class="btn btn-outline">Start a Project</a>
+        <div class="hero-buttons" data-aos="fade-up" data-aos-delay="200">
+          <a href="#work" class="btn">View Our Work</a>
+          <a href="#contact" class="btn btn-outline">Start a Project</a>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- ABOUT SECTION -->
-<section id="about" class="section">
-    <div class="container">
+    <!-- ABOUT (moved down) -->
+    <section id="about" class="section" data-aos="fade-up">
+      <div class="container">
         <h2>About Our Studio</h2>
         <div class="bio-box">
-            <p>
-                We are a digital studio led by Artavazd Ghazaryan — specializing in high-performance websites, 
-                intelligent interfaces, and modern visual experiences.  
-                Our team blends development expertise, AI capabilities, and clean visual design to create 
-                fast, responsive, and deeply engaging online experiences.
-            </p>
-            <p>
-                Whether building for legal firms, medical practices, or hospitality brands, we focus on 
-                clarity, user experience, and business growth. Our work is tailored, scalable, and built to perform.
-            </p>
+          <p>
+            We are a digital studio led by Artavazd Ghazaryan — focused on modern web systems, visual AI workflows, and high-conversion experiences.
+            Our team combines development craftsmanship, AI tooling, and design discipline to deliver fast, resilient sites that move metrics.
+          </p>
+          <p>
+            We partner with legal, medical, and hospitality brands to create clear information hierarchy, accessible UI, and measurable business outcomes.
+            Work is collaborative, pragmatic, and built to scale.
+          </p>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- WORK SECTION -->
-<section id="work" class="section">
-    <div class="container">
+    <!-- WORK -->
+    <section id="work" class="section" data-aos="fade-up">
+      <div class="container">
         <h2>Our Work</h2>
 
-        <!-- Project 1 -->
-        <div class="project-showcase">
-            <div class="project-visual">
-                <img src="img/project1.png" class="project-img" alt="Project Screenshot">
+        <!-- PROJECT 1 -->
+        <article class="project-showcase" data-aos="fade-right">
+          <div class="project-visual">
+            <img src="images/IMG_7366.png" alt="GandI Law Group screenshot" class="project-img" />
+          </div>
+          <div class="project-details">
+            <span class="category legal">Legal</span>
+            <h3>GandI Law Group</h3>
+            <p>
+              Our team delivered a conversion-focused website that emphasizes trust signals and fast intake flows. The build is performance-optimized and easy to maintain.
+            </p>
+            <div class="project-actions">
+              <a class="btn" href="https://gandilawgroup.com" target="_blank" rel="noopener noreferrer">View Project</a>
+              <a class="case-study-link" href="#">View Case Study</a>
             </div>
-            <div class="project-details">
-                <span class="category legal">Legal</span>
-                <h3>Modern Law Firm Website</h3>
-                <p>
-                    Our team delivered a modern, conversion-focused legal website with optimized case inquiry funnels. 
-                    Built for clarity, trust, and fast performance across devices.
-                </p>
-                <a href="#" class="btn">View Project</a>
-            </div>
-        </div>
+          </div>
+        </article>
 
-        <!-- Project 2 -->
-        <div class="project-showcase reverse">
-            <div class="project-visual">
-                <img src="img/project2.png" class="project-img" alt="Project Screenshot">
+        <!-- PROJECT 2 -->
+        <article class="project-showcase reverse" data-aos="fade-left">
+          <div class="project-visual">
+            <img src="images/IMG_7367.png" alt="Lahmajo House screenshot" class="project-img" />
+          </div>
+          <div class="project-details">
+            <span class="category hospitality">Hospitality</span>
+            <h3>Lahmajo House</h3>
+            <p>
+              A lively, mobile-first digital experience built to increase online orders and bookings. Features an interactive menu and SEO-focused pages.
+            </p>
+            <div class="project-actions">
+              <a class="btn" href="https://lahmajouse.com" target="_blank" rel="noopener noreferrer">View Project</a>
+              <a class="case-study-link" href="#">View Case Study</a>
             </div>
-            <div class="project-details">
-                <span class="category hospitality">Hospitality</span>
-                <h3>Restaurant Experience Platform</h3>
-                <p>
-                    A fully responsive platform built for a hospitality brand, combining elegant visuals with 
-                    fast-loading, reservation-driven UX.
-                </p>
-                <a href="#" class="btn">View Project</a>
-            </div>
-        </div>
+          </div>
+        </article>
 
-        <!-- Project 3 -->
-        <div class="project-showcase">
-            <div class="project-visual">
-                <img src="img/project3.png" class="project-img" alt="Project Screenshot">
+        <!-- PROJECT 3 -->
+        <article class="project-showcase" data-aos="fade-right">
+          <div class="project-visual">
+            <img src="images/IMG_7368.png" alt="Smile Makeover of LA screenshot" class="project-img" />
+          </div>
+          <div class="project-details">
+            <span class="category medical">Medical</span>
+            <h3>Smile Makeover of LA</h3>
+            <p>
+              A patient-focused site with clear service pages and optimized conversion paths for consultation leads — designed and implemented by our studio.
+            </p>
+            <div class="project-actions">
+              <a class="btn" href="https://smilemakeoverofla.com" target="_blank" rel="noopener noreferrer">View Project</a>
+              <a class="case-study-link" href="#">View Case Study</a>
             </div>
-            <div class="project-details">
-                <span class="category medical">Medical</span>
-                <h3>Healthcare Information System</h3>
-                <p>
-                    We developed a clean, professional digital presence for a medical practice, optimized for 
-                    readability, patient trust, and fast navigation.
-                </p>
-                <a href="#" class="btn">View Project</a>
+          </div>
+        </article>
+
+        <!-- PROJECT 4 -->
+        <article class="project-showcase reverse" data-aos="fade-left">
+          <div class="project-visual">
+            <img src="images/IMG_7369.png" alt="My Dentist Burbank screenshot" class="project-img" />
+          </div>
+          <div class="project-details">
+            <span class="category medical">Medical</span>
+            <h3>My Dentist Burbank</h3>
+            <p>
+              Location-focused site built for local discovery and fast mobile conversions. Clean design and practical SEO structure are core to the build.
+            </p>
+            <div class="project-actions">
+              <a class="btn" href="https://mydentistburbank.com" target="_blank" rel="noopener noreferrer">View Project</a>
+              <a class="case-study-link" href="#">View Case Study</a>
             </div>
-        </div>
+          </div>
+        </article>
 
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- TESTIMONIALS -->
-<section id="testimonials" class="section">
-    <div class="container">
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section" data-aos="fade-up">
+      <div class="container">
         <h2>Client Feedback</h2>
 
-        <div class="bio-box">
-            <p>
-                “Our experience with this studio has been exceptional. The team delivered a website that is 
-                fast, clean, and perfectly aligned with our brand.”
-            </p>
-            <p>— Law Firm Client</p>
-        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card" data-aos="zoom-in">
+            <p>“Our collaboration with the studio resulted in a modern, performant site that improved inquiries and clarity for clients.”</p>
+            <span>— Law Firm</span>
+          </div>
 
-        <div class="bio-box">
-            <p>
-                “Their attention to detail and dedication to performance set them apart. The site boosted our 
-                engagement significantly.”
-            </p>
-            <p>— Hospitality Business</p>
+          <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="120">
+            <p>“We appreciated the focus on speed, accessibility, and measurable results. The team understood our business needs.”</p>
+            <span>— Healthcare Client</span>
+          </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-    <div class="container">
+    <!-- CONTACT -->
+    <section id="contact" class="section" data-aos="fade-up">
+      <div class="container">
         <h2>Contact</h2>
         <div class="bio-box">
-            <p>Want to collaborate? Let’s build something exceptional together.</p>
-            <a href="mailto:artavazdghazaryan@gmail.com" class="btn btn-contact">Email Us</a>
+          <p>Interested in working together? Our studio specializes in fast delivery, clear communication, and business-focused outcomes.</p>
+          <p><a class="btn btn-contact" href="mailto:artavazdghazaryan@gmail.com">Email Us</a></p>
         </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <p>© 2025 AG Studio — All rights reserved.</p>
     </div>
-</section>
+  </footer>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <p>© 2025 AG Studio — All rights reserved.</p>
-</footer>
+  <!-- SCRIPTS: AOS, then our UI scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-<!-- TYPING ANIMATION -->
-<script>
-const typedText = [
-    "Web Experiences",
-    "AI-Driven Tools",
-    "Interactive Visual Systems",
-    "High-Conversion Websites"
-];
+  <script>
+  /***** INIT AOS (simple, reliable) *****/
+  AOS.init({
+    duration: 800,
+    once: true,
+    offset: 80
+  });
+  </script>
 
-let index = 0;
-let charIndex = 0;
-const typedElement = document.getElementById("typed");
+  <!-- Robust typing + menu + theme script -->
+  <script>
+  (function () {
+    // -------------------------
+    // Config
+    // -------------------------
+    const phrases = [
+      "Web Experiences",
+      "AI-Driven Tools",
+      "Interactive Visual Systems",
+      "High-Conversion Websites"
+    ];
 
-function type() {
-    if (charIndex < typedText[index].length) {
-        typedElement.textContent += typedText[index].charAt(charIndex);
-        charIndex++;
-        setTimeout(type, 70);
-    } else {
-        setTimeout(erase, 1200);
+    // -------------------------
+    // DOM helpers
+    // -------------------------
+    function ready(fn) {
+      if (document.readyState !== 'loading') fn();
+      else document.addEventListener('DOMContentLoaded', fn);
     }
-}
 
-function erase() {
-    if (charIndex > 0) {
-        typedElement.textContent = typedText[index].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(erase, 40);
-    } else {
-        index = (index + 1) % typedText.length;
-        setTimeout(type, 200);
-    }
-}
+    ready(() => {
+      // Elements
+      const typedEl = document.getElementById('typed');
+      const typedParent = typedEl ? typedEl.parentElement : null;
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
 
-document.addEventListener("DOMContentLoaded", type);
-</script>
+      // ---------- Mobile menu behavior ----------
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+          menuToggle.setAttribute('aria-expanded', String(!expanded));
+          mobileMenu.style.display = expanded ? 'none' : 'block';
+          mobileMenu.setAttribute('aria-hidden', String(expanded));
+        });
+
+        // close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          mobileMenu.style.display = 'none';
+          menuToggle.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+        }));
+      }
+
+      // ---------- Typing animation with reserved width ----------
+      if (!typedEl || !typedParent) return;
+
+      // measure longest string (using canvas measurement)
+      const measure = (texts) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const style = getComputedStyle(typedEl);
+        const fontSpec = style.fontWeight + " " + style.fontSize + " " + style.fontFamily;
+        ctx.font = fontSpec;
+        let max = 0;
+        for (let t of texts) {
+          const w = ctx.measureText(t).width;
+          if (w > max) max = w;
+        }
+        return Math.ceil(max);
+      };
+
+      // Reserve width so buttons won't shift
+      try {
+        const w = measure(phrases);
+        // add cushion for cursor and padding
+        typedParent.style.minWidth = (w + 36) + 'px';
+      } catch (e) { /* ignore measurement failures */ }
+
+      let pIndex = 0, cIndex = 0, timer = null;
+
+      function typeChar() {
+        const text = phrases[pIndex];
+        if (cIndex < text.length) {
+          typedEl.textContent += text.charAt(cIndex);
+          cIndex++;
+          timer = setTimeout(typeChar, 60);
+        } else {
+          timer = setTimeout(eraseChar, 1000);
+        }
+      }
+
+      function eraseChar() {
+        const text = phrases[pIndex];
+        if (cIndex > 0) {
+          typedEl.textContent = text.substring(0, cIndex - 1);
+          cIndex--;
+          timer = setTimeout(eraseChar, 36);
+        } else {
+          pIndex = (pIndex + 1) % phrases.length;
+          timer = setTimeout(typeChar, 220);
+        }
+      }
+
+      // Start typing loop
+      typeChar();
+
+      // clean up timers on unload
+      window.addEventListener('beforeunload', () => {
+        if (timer) clearTimeout(timer);
+      });
+    });
+  })();
+  </script>
 
 </body>
 </html>
