@@ -153,6 +153,8 @@ position: relative;
 padding: 120px 0 140px;
 overflow: hidden;
 text-align: center;
+background: var(–bg);
+min-height: 600px;
 }
 
 /* animated subtle grid */
