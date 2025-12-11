@@ -3,170 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artavazd Ghazaryan | Website Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Artavazd Ghazaryan — Web & AI Studio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- 🔥 ADDED: Minimal sticky nav -->
-    <nav class="top-nav">
-        <div class="container nav-inner">
-            <a href="#" class="nav-logo">AG</a>
-            <ul class="nav-links">
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="darkToggle" aria-label="Toggle dark mode">🌙</button></li>
-            </ul>
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="container nav-flex">
+        <div class="logo">AG</div>
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle">🌙</button>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="animated-grid"></div>
+
+    <div class="hero-content container">
+        <h1 class="name">Artavazd Ghazaryan</h1>
+
+        <h2 class="typed-subtitle">
+            <span id="typed"></span>
+        </h2>
+
+        <div class="hero-buttons">
+            <a href="#work" class="btn">View Our Work</a>
+            <a href="#contact" class="btn btn-outline">Start a Project</a>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <header class="hero">
-        <div class="container">
-            <h1 class="name" data-aos="fade-down">Artavazd Ghazaryan</h1>
-            <p class="title" data-aos="fade-down" data-aos-delay="150">Website Developer</p>
-            
-            <div class="bio-box" data-aos="fade-up" data-aos-delay="400">
-                <p>As a seasoned Website Developer, I specialize in crafting professional, high-impact online presences for legal and medical practices, as well as dynamic hospitality businesses. My focus is on creating responsive, performance-optimized sites that drive client engagement and business growth.</p>
-            </div>
-
-            <!-- 🔥 ADDED: Hero CTA -->
-            <div class="hero-cta" data-aos="fade-up" data-aos-delay="600">
-                <a href="#projects" class="btn primary-cta">See My Work</a>
-                <a href="#contact" class="btn secondary-cta">Work With Me</a>
-            </div>
-
-            <!-- 🔥 ADDED: Scroll indicator -->
-            <div class="scroll-indicator" data-aos="fade-in" data-aos-delay="900">
-                <span></span>
-            </div>
+<!-- ABOUT SECTION -->
+<section id="about" class="section">
+    <div class="container">
+        <h2>About Our Studio</h2>
+        <div class="bio-box">
+            <p>
+                We are a digital studio led by Artavazd Ghazaryan — specializing in high-performance websites, 
+                intelligent interfaces, and modern visual experiences.  
+                Our team blends development expertise, AI capabilities, and clean visual design to create 
+                fast, responsive, and deeply engaging online experiences.
+            </p>
+            <p>
+                Whether building for legal firms, medical practices, or hospitality brands, we focus on 
+                clarity, user experience, and business growth. Our work is tailored, scalable, and built to perform.
+            </p>
         </div>
-    </header>
+    </div>
+</section>
 
-    <section id="projects" class="section">
-        <div class="container">
-            <h2 data-aos="fade-down">Selected Work</h2>
+<!-- WORK SECTION -->
+<section id="work" class="section">
+    <div class="container">
+        <h2>Our Work</h2>
 
-            <!-- Existing projects untouched, just added micro-interaction classes -->
-
-            <div class="project-showcase hover-lift">
-                <div class="project-visual" data-aos="fade-right">
-                    <img src="images/IMG_7366.png" alt="Ghandi Law Group website" class="project-img">
-                </div>
-                <div class="project-details" data-aos="fade-up" data-aos-delay="300">
-                    <span class="category legal">Legal Services</span>
-                    <h3>GandI Law Group</h3>
-                    <p>Designed and deployed a professional, trustworthy, and client-centric online platform for a distinguished law firm.</p>
-                    <a href="https://gandilawgroup.com" target="_blank" class="btn">View Project →</a>
-                    <!-- 🔥 ADDED: Case study placeholder -->
-                    <a href="#" class="case-study-link">View Case Study</a>
-                </div>
+        <!-- Project 1 -->
+        <div class="project-showcase">
+            <div class="project-visual">
+                <img src="img/project1.png" class="project-img" alt="Project Screenshot">
             </div>
-
-            <div class="project-showcase reverse hover-lift">
-                <div class="project-visual" data-aos="fade-left">
-                    <img src="images/IMG_7367.png" alt="Lahmajo House website" class="project-img">
-                </div>
-                <div class="project-details" data-aos="fade-up" data-aos-delay="300">
-                    <span class="category hospitality">Hospitality & Dining</span>
-                    <h3>Lahmajo House</h3>
-                    <p>Created a vibrant and engaging website to boost in-person and online orders.</p>
-                    <a href="https://lahmajouse.com" target="_blank" class="btn">View Project →</a>
-                    <a href="#" class="case-study-link">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="project-showcase hover-lift">
-                <div class="project-visual" data-aos="fade-right">
-                    <img src="images/IMG_7368.png" alt="Smile Makeover of LA website" class="project-img">
-                </div>
-                <div class="project-details" data-aos="fade-up" data-aos-delay="300">
-                    <span class="category medical">Medical/Dental Practice</span>
-                    <h3>Smile Makeover of LA</h3>
-                    <p>Developed a clean, approachable, and highly informative site focused on patient education.</p>
-                    <a href="https://smilemakeoverofla.com" target="_blank" class="btn">View Project →</a>
-                    <a href="#" class="case-study-link">View Case Study</a>
-                </div>
-            </div>
-
-            <div class="project-showcase reverse hover-lift">
-                <div class="project-visual" data-aos="fade-left">
-                    <img src="images/IMG_7369.png" alt="My Dentist Burbank website" class="project-img">
-                </div>
-                <div class="project-details" data-aos="fade-up" data-aos-delay="300">
-                    <span class="category medical">Medical/Dental Practice</span>
-                    <h3>My Dentist Burbank</h3>
-                    <p>A location-focused site built for local SEO performance.</p>
-                    <a href="https://mydentistburbank.com" target="_blank" class="btn">View Project →</a>
-                    <a href="#" class="case-study-link">View Case Study</a>
-                </div>
+            <div class="project-details">
+                <span class="category legal">Legal</span>
+                <h3>Modern Law Firm Website</h3>
+                <p>
+                    Our team delivered a modern, conversion-focused legal website with optimized case inquiry funnels. 
+                    Built for clarity, trust, and fast performance across devices.
+                </p>
+                <a href="#" class="btn">View Project</a>
             </div>
         </div>
-    </section>
 
-    <!-- 🔥 ADDED: Testimonials -->
-    <section id="testimonials" class="section testimonial-section">
-        <div class="container">
-            <h2 data-aos="fade-down">Client Feedback</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card" data-aos="zoom-in">
-                    <p>“Professional, fast, and absolutely exceeded our expectations. Our site now converts better than ever.”</p>
-                    <span>- Ghandi Law Group</span>
-                </div>
-                <div class="testimonial-card" data-aos="zoom-in" data-aos-delay="150">
-                    <p>“Clean design, great communication, and flawless execution. Highly recommended.”</p>
-                    <span>- Smile Makeover of LA</span>
-                </div>
+        <!-- Project 2 -->
+        <div class="project-showcase reverse">
+            <div class="project-visual">
+                <img src="img/project2.png" class="project-img" alt="Project Screenshot">
+            </div>
+            <div class="project-details">
+                <span class="category hospitality">Hospitality</span>
+                <h3>Restaurant Experience Platform</h3>
+                <p>
+                    A fully responsive platform built for a hospitality brand, combining elegant visuals with 
+                    fast-loading, reservation-driven UX.
+                </p>
+                <a href="#" class="btn">View Project</a>
             </div>
         </div>
-    </section>
 
-    <footer class="footer" id="contact" data-aos="fade-in">
-        <div class="container">
-            <p>Ready to build your next high-performance site?</p>
-            <a href="mailto:your_email@example.com" class="btn btn-contact">Get in Touch</a>
-
-            <!-- 🔥 ADDED: Optional trust badges -->
-            <div class="trust-badges">
-                <span>⏱ 5+ Years Experience</span>
-                <span>⚡ Fast Turnaround</span>
-                <span>💼 Business-Focused</span>
+        <!-- Project 3 -->
+        <div class="project-showcase">
+            <div class="project-visual">
+                <img src="img/project3.png" class="project-img" alt="Project Screenshot">
             </div>
-
-            <p class="copy">&copy; 2025 Artavazd Ghazaryan | Website Developer</p>
+            <div class="project-details">
+                <span class="category medical">Medical</span>
+                <h3>Healthcare Information System</h3>
+                <p>
+                    We developed a clean, professional digital presence for a medical practice, optimized for 
+                    readability, patient trust, and fast navigation.
+                </p>
+                <a href="#" class="btn">View Project</a>
+            </div>
         </div>
-    </footer>
-    
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-        });
 
-        // 🔥 Smooth scroll for nav
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
-            });
-        });
+    </div>
+</section>
 
-        // 🔥 Sticky nav
-        const nav = document.querySelector('.top-nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('sticky', window.scrollY > 50);
-        });
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="section">
+    <div class="container">
+        <h2>Client Feedback</h2>
 
-        // 🔥 Dark mode toggle
-        const toggle = document.getElementById('darkToggle');
-        toggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
-    </script>
+        <div class="bio-box">
+            <p>
+                “Our experience with this studio has been exceptional. The team delivered a website that is 
+                fast, clean, and perfectly aligned with our brand.”
+            </p>
+            <p>— Law Firm Client</p>
+        </div>
+
+        <div class="bio-box">
+            <p>
+                “Their attention to detail and dedication to performance set them apart. The site boosted our 
+                engagement significantly.”
+            </p>
+            <p>— Hospitality Business</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+    <div class="container">
+        <h2>Contact</h2>
+        <div class="bio-box">
+            <p>Want to collaborate? Let’s build something exceptional together.</p>
+            <a href="mailto:artavazdghazaryan@gmail.com" class="btn btn-contact">Email Us</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <p>© 2025 AG Studio — All rights reserved.</p>
+</footer>
+
+<!-- TYPING ANIMATION -->
+<script>
+const typedText = [
+    "Web Experiences",
+    "AI-Driven Tools",
+    "Interactive Visual Systems",
+    "High-Conversion Websites"
+];
+
+let index = 0;
+let charIndex = 0;
+const typedElement = document.getElementById("typed");
+
+function type() {
+    if (charIndex < typedText[index].length) {
+        typedElement.textContent += typedText[index].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, 70);
+    } else {
+        setTimeout(erase, 1200);
+    }
+}
+
+function erase() {
+    if (charIndex > 0) {
+        typedElement.textContent = typedText[index].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 40);
+    } else {
+        index = (index + 1) % typedText.length;
+        setTimeout(type, 200);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", type);
+</script>
 
 </body>
 </html>
