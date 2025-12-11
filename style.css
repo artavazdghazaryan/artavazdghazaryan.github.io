@@ -309,3 +309,128 @@ nav a:hover {
         min-height: 220px;
     }
 }
+
+/* ===========================
+   NAV & HERO STABILITY PATCH
+   Paste after existing CSS
+   =========================== */
+
+/* Make navbar a stable single-line flex container */
+.navbar, .top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: var(--bg);
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+}
+
+/* .nav-flex must keep items in a row and avoid wrapping */
+.nav-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Logo fixed width so links don't push it */
+.logo {
+  flex: 0 0 auto;
+  min-width: 56px;
+}
+
+/* Nav container grows to take remaining space, center links */
+.nav-links,
+header nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;          /* prevent wrapping */
+  min-width: 0;               /* allow children to shrink safely */
+}
+
+/* Prevent links wrapping and set ellipsis only if absolutely necessary */
+.nav-links a,
+header nav a,
+nav a {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 6px 2px;
+}
+
+/* Theme toggle sits to the right and is not allowed to wrap into nav */
+.theme-toggle, #darkToggle {
+  flex: 0 0 auto;
+  margin-left: 12px;
+}
+
+/* Reduce nav font-size on narrow screens before wrapping occurs */
+@media (max-width: 520px) {
+  nav a { font-size: 0.95rem; gap: 10px; }
+  .logo { min-width: 44px; }
+}
+
+/* ===========================
+   Typed text stability
+   Prevent hero buttons jumping when text size changes
+   =========================== */
+
+/* Reserve space for the typed text — compute longest width in JS, but also set min-height */
+.typed-subtitle {
+    display: block;
+    min-height: 2.2rem;         /* reserve vertical space */
+    line-height: 1;
+    white-space: nowrap;        /* keep on one line */
+    overflow: hidden;           /* hide overflow while animating */
+    text-overflow: clip;
+}
+
+/* The element that receives text */
+#typed {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 6px;         /* small gap before cursor */
+    will-change: contents;
+}
+
+/* Small blinking cursor (pure CSS) */
+#typed::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: var(--accent);
+    margin-left: 6px;
+    vertical-align: middle;
+    animation: blink 1s steps(2, start) infinite;
+    opacity: 0.95;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Ensure hero buttons are anchored and don't reflow */
+.hero-buttons {
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* If typed text becomes too long on very small screens, limit width and allow text clipping */
+@media (max-width: 420px) {
+    .typed-subtitle { max-width: 85vw; }
+    .name { font-size: 2.4rem; }
+}
+
+/* ===========================
+   z-index/order fixes for background animations
+   =========================== */
+.animated-grid { z-index: 0; pointer-events: none; }
+.hero-content { position: relative; z-index: 2; }
+
+/* small polish: keep project-showcase from shifting layout when buttons are present */
+.project-details .btn {
+  display: inline-block;
+  min-width: 120px;
+  text-align: center;
+}
