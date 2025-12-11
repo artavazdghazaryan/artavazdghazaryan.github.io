@@ -8,6 +8,80 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
+<script>
+(function() {
+  const phrases = [
+    "Web Experiences",
+    "AI-Driven Tools",
+    "Interactive Visual Systems",
+    "High-Conversion Websites"
+  ];
+
+  // Safe DOM ready
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(() => {
+    const typedEl = document.getElementById('typed');
+    const parent = typedEl ? typedEl.parentElement : null;
+    if (!typedEl || !parent) return; // no-op if element missing
+
+    // Helper to measure longest phrase and reserve width
+    const measureLongest = (phrases, font) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      ctx.font = font || getComputedStyle(typedEl).font || '16px sans-serif';
+      let max = 0;
+      for (let p of phrases) {
+        const w = ctx.measureText(p).width;
+        if (w > max) max = w;
+      }
+      return Math.ceil(max);
+    };
+
+    // Set min-width on parent to avoid reflow when strings change
+    const fontSpec = `${getComputedStyle(typedEl).fontWeight} ${getComputedStyle(typedEl).fontSize} ${getComputedStyle(typedEl).fontFamily}`;
+    const longestW = measureLongest(phrases, fontSpec);
+    // Add a little padding so it doesn't feel tight
+    parent.style.minWidth = (longestW + 28) + 'px';
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let typingTimer = null;
+
+    function typeChar() {
+      const current = phrases[phraseIndex];
+      if (charIndex < current.length) {
+        typedEl.textContent += current.charAt(charIndex);
+        charIndex++;
+        typingTimer = setTimeout(typeChar, 60);
+      } else {
+        typingTimer = setTimeout(eraseChar, 1100);
+      }
+    }
+
+    function eraseChar() {
+      if (charIndex > 0) {
+        typedEl.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+        charIndex--;
+        typingTimer = setTimeout(eraseChar, 40);
+      } else {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingTimer = setTimeout(typeChar, 220);
+      }
+    }
+
+    // Start
+    typeChar();
+
+    // Clean up on page unload
+    window.addEventListener('beforeunload', () => { if (typingTimer) clearTimeout(typingTimer); });
+  });
+})();
+</script>
+    
 <body>
 
 <!-- NAVBAR -->
