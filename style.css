@@ -105,23 +105,18 @@ h2 {
     flex-direction: row-reverse;
 }
 
+/* --- Corrected .project-img Rule in style.css --- */
 .project-img {
     width: 100%;
-    height: auto;
+    height: auto; /* Changed from fixed height to auto */
+    min-height: 350px; /* Keep minimum height to maintain layout structure */
     border-radius: var(--border-radius);
-    object-fit: cover;
+    object-fit: cover; /* Ensures image covers the space without stretching */
     display: block;
     border: 1px solid #30363d;
     
-    /* Placeholder Styling for visual impact */
-    background: #444; 
-    min-height: 350px; 
-    content: "Project Screenshot";
-    text-align: center;
-    line-height: 350px; 
-    font-size: 1.8rem;
-    color: #a0a0a0;
-    font-weight: 600;
+    /* 💥 REMOVED: background: #444; */
+    /* 💥 REMOVED: content: "Project Screenshot"; and related lines */
 }
 
 .project-details h3 {
