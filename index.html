@@ -17,30 +17,32 @@
 <body>
 
   <!-- NAV -->
-  <header class="navbar" role="banner">
-    <div class="container nav-flex">
-      <div class="logo" aria-hidden="true">AG</div>
+<header class="navbar" role="banner">
+  <div class="container nav-flex">
+    <div class="logo" aria-hidden="true">AG</div>
 
-      <!-- Desktop nav -->
-      <nav class="nav-links" role="navigation" aria-label="Primary navigation">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-
-      <!-- mobile menu toggle -->
-      <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
-    </div>
-
-    <!-- mobile menu (hidden by default) -->
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Desktop nav -->
+    <nav class="nav-links" role="navigation" aria-label="Primary navigation">
       <a href="#work">Work</a>
-      <a href="#about">About</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#contact">Contact</a>
-    </div>
-  </header>
+    </nav>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+    <!-- mobile menu toggle -->
+    <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <a href="#work">Work</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
 
   <!-- HERO -->
   <main>
